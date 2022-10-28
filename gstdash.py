@@ -47,6 +47,15 @@ class MainWindow(Gtk.ApplicationWindow):
         self.switch_box.append(self.label)
         self.box2.append(self.switch_box)
 
+        self.scrldwin = Gtk.ScrolledWindow(hexpand=True,vexpand=True)
+    
+        self.lstbox = Gtk.ListBox()
+        self.scrldwin.set_child(self.lstbox)
+        for i in range(100):
+            self.label = Gtk.Label(label=i)
+            self.lstbox.append(self.label)
+        self.box3.append(self.scrldwin)
+
     def switch_switched(self, switch, state):
         print(f"The switch has been switched {'on' if state else 'off'}")
 
