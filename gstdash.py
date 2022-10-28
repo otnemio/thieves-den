@@ -22,10 +22,12 @@ class MainWindow(Gtk.ApplicationWindow):
         self.box1.append(self.box2)  # Put vert box in that box
         self.box1.append(self.box3)  # And another one, empty for now
 
-        # Add a button
-        self.button = Gtk.Button(label="Hello")
-        self.button.connect('clicked', self.hello)
-        self.box2.append(self.button)  # But button in the first of the two vertical boxes
+        
+        for i in range(5):
+            # Add a button
+            self.button = Gtk.Button(label=i)
+            self.button.connect('clicked', self.hello)
+            self.box2.append(self.button)  # But button in the first of the two vertical boxes
 
         # Add a check button
         self.check = Gtk.CheckButton(label="And goodbye?")
@@ -49,7 +51,7 @@ class MainWindow(Gtk.ApplicationWindow):
         print(f"The switch has been switched {'on' if state else 'off'}")
 
     def hello(self, button):
-        print("Hello world")
+        print(f"Hello world {button.get_label()}")
         if self.check.get_active():
             print("Goodbye world!")
             self.close()
