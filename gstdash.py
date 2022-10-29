@@ -1,6 +1,6 @@
 import sys
 import gi
-import yaml, os
+import yaml, os, common
 
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -24,7 +24,7 @@ class MainWindow(Gtk.ApplicationWindow):
         self.box1.append(self.box3)  # And another one, empty for now
 
         
-        for g in self.readConfig('gst'):
+        for g in common.readConfig('gst'):
             for i in g:
                 self.button = Gtk.Button(label=i)
                 self.button.connect('clicked', self.hello)
@@ -65,16 +65,6 @@ class MainWindow(Gtk.ApplicationWindow):
         if self.check.get_active():
             print("Goodbye world!")
             self.close()
-    
-    def readConfig(self,key):
-        _ROOT = os.path.abspath(os.path.dirname(__file__))
-        config_file = os.path.join(_ROOT, "", "config.yaml")
-        if os.path.exists(config_file):
-            with open(config_file, 'r') as c_file:
-                c_data = yaml.load(c_file,Loader=yaml.SafeLoader)
-                return c_data[key]
-        else:
-            return None
 
 
 class MyApp(Adw.Application):
