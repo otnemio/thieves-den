@@ -1,0 +1,4 @@
+gst:
+  - gstn.user1 : 'P@ssword1'
+  - gstn.user2 : 'P@ssword2'
+  
