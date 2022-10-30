@@ -32,6 +32,15 @@ def listGSTNs():
             table.add_row(f"{i}",f"{g[i]}")
     input_console.print(table)
 
+def login(userid):
+    gstn = None
+    for g in common.readConfig('gst'):
+        for i in g:
+            if i == userid:
+                gstn = g[i]
+                break
+    input_console.print(f'{userid} {gstn}')
+
 if __name__ == '__main__':
     p5 = lambda rsstr : int(20*float(rsstr))
     while True:
@@ -43,3 +52,5 @@ if __name__ == '__main__':
                 exit()
             case [ 'list' ]:
                 listGSTNs()
+            case [ 'login', userid ]:
+                login(userid)
