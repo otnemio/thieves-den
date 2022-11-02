@@ -1,8 +1,9 @@
+from gstsel import GST
 from rich.prompt import Prompt
 from rich.table import Table
 from rich.console import Console
 from rich import box
-import common
+import common, time
 
 input_console = Console(stderr=False)
 
@@ -39,7 +40,12 @@ def login(userid):
             if i == userid:
                 gstn = g[i]
                 break
-    input_console.print(f'{userid} {gstn}')
+    if gstn is not None: 
+        input_console.print(f'{userid} {gstn}')
+        gst = GST(False)
+        gst.login_a(userid,input("Password: "))
+        gst.login_b(input("Captcha: "))
+    time.sleep(100)
 
 if __name__ == '__main__':
     p5 = lambda rsstr : int(20*float(rsstr))
